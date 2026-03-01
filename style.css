@@ -1,0 +1,68 @@
+.filter-btn{
+  @apply px-5 py-2 rounded-full border border-brand text-brand text-sm
+         transition hover:bg-brand hover:text-black;
+}
+.filter-btn.active{
+  @apply bg-brand text-black;
+}
+
+.project-card{
+  @apply bg-black/40 border border-white/10 rounded-2xl overflow-hidden
+         hover:scale-105 transition duration-500 flex flex-col;
+}
+
+.project-card img{
+  @apply w-full aspect-video object-cover;
+}
+
+.project-card h3{
+  @apply p-4 text-center font-semibold text-brand;
+}
+
+
+
+
+  .card {
+    @apply relative bg-black/40 border border-white/10 rounded-2xl overflow-hidden 
+           transition hover:scale-105 hover:shadow-xl;
+  }
+
+  .card::before {
+    content: "";
+    display: block;
+    aspect-ratio: 16 / 9;
+    background-image: url("p1.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card::after {
+    content: "View Details";
+    @apply absolute inset-0 flex items-center justify-center
+           bg-black/70 text-brand font-semibold opacity-0 transition;
+  }
+
+  .card:hover::after {
+    opacity: 1;
+  }
+
+
+
+  .typing-effect {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  border-right: 2px solid #fff;
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0% { border-color: transparent; }
+  50% { border-color: #fff; }
+  100% { border-color: transparent; }
+}
+
+

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nazirul Islam Nayeem | UI/UX & Web Designer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="icon" type="image/png" href="/my logo.png">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Border Glow Animation */
+@keyframes borderGlow {
+  0% {
+    box-shadow: 0 0 0px rgba(34,197,94,0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(34,197,94,0.6),
+      0 0 50px rgba(34,197,94,0.3);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(34,197,94,0.2);
+  }
+}
+
+.animated-border {
+  animation: borderGlow 4s ease-in-out infinite;
+  border: 2px solid rgba(34,197,94,0.4);
+}
+
+/* Hover micro interaction */
+.animated-border:hover {
+  box-shadow:
+    0 0 35px rgba(34,197,94,0.9),
+    0 0 80px rgba(34,197,94,0.4);
+  transform: scale(1.06) rotate(0.5deg);
+}
+
+  
+.photo-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.glow-animate {
+  animation: glowPulse 5s ease-in-out infinite;
+}
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+.skill-pill {
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+  background: #22c55e;
+  color: black;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  transform: translateY(-3px);
+}
+
+ @keyframes typing {
+      from { width: 0; }
+      to { width: 22ch; } /* মোট character অনুযায়ী adjust করুন */
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .typing {
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #00ffff; /* caret effect */
+      width: 0;
+      animation: typing 3s steps(22) forwards, blink 0.75s step-end infinite;
+    }
+
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#22c55e',
+            dark: '#0b0f0e'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-dark text-gray-200 font-sans">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 w-full bg-dark/80 backdrop-blur border-b border-white/10 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <!-- 1. Logo -->
+    <div class="flex-shrink-0 flex items-center text-2xl gap-4 text-gree">
+      <img src="my logo.png" class="w-20" alt="Logo">
+      <h2 class="text-brand text-3xl font-bold">Nayeem</h2>
+    </div>
+
+    <!-- 2. Navigation Links -->
+    <ul id="nav-links" class="hidden md:flex gap-8 text-sm text-gray-300">
+      <li><a href="#home" class="hover:text-brand transition">Home</a></li>
+      <li><a href="#projects" class="hover:text-brand transition">Projects</a></li>
+      <li><a href="#contact" class="hover:text-brand transition">Contact</a></li>
+      <li><a href="#Education" class="hover:text-brand transition">Education</a></li>
+    </ul>
+
+    <!-- 3. Buttons -->
+<div class="flex gap-4">
+  <a href="https://www.behance.net/ninayeem" target="_blank"
+     class="px-5 py-2 rounded-full bg-brand text-black text-sm font-semibold hover:scale-105 transition">
+    behance
+  </a>
+  <a href="https://dribbble.com/nazirul-islam-nayeem" target="_blank"
+     class="px-5 py-2 rounded-full bg-brand text-black text-sm font-semibold hover:scale-105 transition">
+    Dribbble
+  </a>
+</div>
+
+    <!-- Mobile menu button -->
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-white focus:outline-none">
+        &#9776;
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <ul id="mobile-menu" class="md:hidden hidden flex-col gap-4 bg-dark/90 p-6 text-gray-300">
+    <li><a href="#home" class="hover:text-brand transition">Home</a></li>
+    <li><a href="#projects" class="hover:text-brand transition">Projects</a></li>
+    <li><a href="#contact" class="hover:text-brand transition">Contact</a></li>
+    <li><a href="#education" class="hover:text-brand transition">Education</a></li>
+  </ul>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+<section id="home" class="min-h-screen flex items-center px-6 md:px-20 pt-24">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+    <div>
+  
+
+      <h1 class="text-4xl md:text-5xl font-bold mt-4 leading-tight gap-10 text-green-500">
+        Hi, I’m <span class="text-white">Nazirul Islam Nayeem</span><br/>
+<span id="typing" class=" font-semibold text-5xl text-green-500"></span>
+
+      </h1>
+
+      <p class="mt-6 text-gray-400 max-w-xl">
+        Creative UI/UX Designer focused on crafting intuitive user experiences
+        and building responsive, modern web interfaces.
+      </p>
+
+      <div class="flex gap-4 mt-8">
+        <a href="/My cv.pdf"
+           download
+           class="bg-brand text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition">
+          Download Resume
+        </a>
+
+        <a href="https://www.figma.com/design/lRSmxEr6ybyfF4AINBXiRB/My-Worl-File?node-id=0-1&t=tQBslYbT3k62xpbO-1" target="_blank"
+           class="border border-brand px-6 py-3 rounded-full hover:bg-brand hover:text-black transition">
+         Figma Desing
+        </a>
+      </div>
+    </div>
+
+   <div class="relative flex justify-center md:justify-end photo-float">
+
+  <!-- Animated Glow -->
+<div class="relative flex justify-center md:justify-end photo-float">
+
+  <!-- Animated Glow Background -->
+  <div class="absolute w-80 h-80 bg-indigo-500/30 rounded-full blur-3xl -z-10 glow-animate"></div>
+
+  <!-- Photo with Animated Border -->
+  <img src="photos.png"
+       alt="Nazirul Islam Nayeem"
+       class="relative w-72 h-110 object-cover rounded-2xl shadow-lg
+              animated-border transition-all duration-500">
+</div>
+
+</section>
+
+<!-- ================= UNIQUE SKILLS ================= -->
+<!-- ================= SKILLS CARDS ================= -->
+<section id="skills" class="py-24 px-6 md:px-20 bg-black/30">
+  <div class="max-w-6xl mx-auto">
+
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+      My <span class="text-brand">Skills</span>
+    </h2>
+
+    <div class="grid md:grid-cols-4 gap-8">
+
+      <!-- UI/UX Card -->
+      <div class="bg-black/40 p-6 rounded-2xl border border-white/10 hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-brand">UI / UX</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="skill-pill">User Interface Design</span>
+          <span class="skill-pill">User Experience Design</span>
+          <span class="skill-pill">Wireframing</span>
+          <span class="skill-pill">Prototyping</span>
+          <span class="skill-pill">Design Systems</span>
+        </div>
+      </div>
+
+      <!-- Tools Card -->
+      <div class="bg-black/40 p-6 rounded-2xl border border-white/10 hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-brand">Tools</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Adobe XD</span>
+            <span class="skill-pill">Vs code</span>
+          <span class="skill-pill">Photoshop</span>
+          <span class="skill-pill">Illustrator</span>
+             <span class="skill-pill">Affinity</span>
+                     <span class="skill-pill">Aobe Id</span>
+
+
+          <span class="skill-pill">ms office</span>
+          <span class="skill-pill">filmora</span>
+        </div>
+      </div>
+
+      <!-- Web Development Card -->
+      <div class="bg-black/40 p-6 rounded-2xl border border-white/10 hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-brand">Web Development</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="skill-pill">HTML5</span>
+          <span class="skill-pill">CSS3</span>
+          <span class="skill-pill">Tailwind CSS</span>
+          <span class="skill-pill">JavaScript </span>
+          <span class="skill-pill">Responsive Design</span>
+             <span class="skill-pill">React</span>
+               <span class="skill-pill">git hub</span>
+
+        </div>
+      </div>
+
+      <!-- Graphic Design Card -->
+      <div class="bg-black/40 p-6 rounded-2xl border border-white/10 hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-brand">Graphic Design</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="skill-pill">Branding</span>
+          <span class="skill-pill">Posters & Flyers</span>
+          <span class="skill-pill">Social Media Graphics</span>
+          <span class="skill-pill">Brochure Design</span>
+          <span class="skill-pill">Logo Design</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-24 px-6 md:px-20 bg-black/20">
+  <div class="max-w-6xl mx-auto">
+
+    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+      My <span class="text-brand">Projects</span>
+    </h2>
+
+    <!-- FILTER BUTTONS -->
+    <div class="flex justify-center gap-4 mb-12 flex-wrap">
+      
+      
+      <button class="filter-btn px-5 py-2 rounded-full border border-brand text-brand hover:bg-brand hover:text-black" data-filter="graphic">Graphic</button>
+      
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div id="projectGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- ================= UI 6 cards ================= -->
+
+
+
+
+      <!-- ================= GRAPHIC 12 cards ================= -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/balobasa.jpg" class="w-full h-400 object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Poster Design</h3>
+      </div>
+
+      <!-- Graphic 2 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/Book cover desing@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Book cover</h3>
+      </div>
+
+      <!-- Graphic 3 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/burger `@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Food Design</h3>
+      </div>
+
+      <!-- Graphic 4 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/Business Card Mockup on Modern White Bar.jpg" class="w-full h-150 object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+  
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Business Card</h3>
+      </div>
+
+      <!-- Graphic 5 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/gO TRUCK POSTER@3x.png" class="w-full h-200 object-cover group-hover:scale-110 transition duration-500 mb-20 mt-20">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Business Card</h3>
+      </div>
+
+      <!-- Graphic 6 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/thub.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Brochure Design</h3>
+      </div>
+
+      <!-- Graphic 7 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/banner.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Banner Design</h3>
+      </div>
+
+      <!-- Graphic 8 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/ttt.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Infographic Design</h3>
+      </div>
+
+      <!-- Graphic 9 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/Go truck poster 1@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Icon Set</h3>
+      </div>
+
+      <!-- Graphic 10 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/Hero.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Business Flyer</h3>
+      </div>
+
+      <!-- Graphic 11 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/My Marn.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Creative Poster</h3>
+      </div>
+
+      <!-- Graphic 12 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/Bhola Ambulace p1@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 13 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/ctrl z@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+ <!-- Graphic 14 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/porikolpona@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 15 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/ui ux poster@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 16 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/Untitled-1 copy.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 17 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/walpaper-২ copy.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 18 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/poster@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+ <!-- Graphic 19 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/info Graphy@3x.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 20 -->
+      <div class="project-card graphic group bg-black/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class=" overflow-hidden relative">
+          <img src="/Graphic/w.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+       <!-- Graphic 21 -->
+      <div class="project-card graphic group bg-red-40 border border-white/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="overflow-hidden relative">
+          <img src="/Graphic/Untitled-1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <button class="px-6 py-2 rounded-full bg-brand text-black font-semibold">View Details</button>
+          </div>
+        </div>
+        <h3 class="p-4 text-center font-semibold text-brand">Magazine Cover</h3>
+      </div>
+      <!-- Triggered by button -->
+<div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+  <img id="modal-img" src="" class="max-h-[90%] max-w-[90%] object-contain">
+  <button onclick="closeModal()" class="absolute top-5 right-5 text-white text-2xl">&times;</button>
+</div>
+      <!-- ================= WEB 3 cards ================= -->
+      
+
+    <!-- SEE MORE / SEE LESS -->
+    <div class="flex justify-center mt-12 gap-4">
+      <button id="seeMoreBtn" class="px-6 py-3 rounded-full bg-brand text-black font-semibold hover:scale-105 transition">
+        See More
+      </button>
+      <button id="seeLessBtn" class="px-6 py-3 rounded-full bg-brand text-black font-semibold hover:scale-105 transition hidden">
+        See Less
+      </button>
+    </div>
+
+  </div>
+</section>
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-purple-400">Education</h2>
+  
+    </div>
+
+    <!-- Education Cards -->
+    <div class="space-y-8" id="Education">
+
+      <!-- Diploma -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-purple-500 transition">
+        <h3 class="text-2xl font-semibold text-purple-300">
+          Diploma in Computer Science & Technology
+        </h3>
+        <p class="text-gray-300 mt-2">
+          <span class="font-medium">Institute:</span>
+     Bhola Polytechnic Institute
+        </p>
+        <p class="text-gray-400 mt-1">
+          <span class="font-medium">Status:</span> 6th Semester Running (Out of 8)
+        </p>
+      </div>
+
+      <!-- SSC -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-purple-500 transition">
+        <h3 class="text-2xl font-semibold text-purple-300">
+          Secondary School Certificate (SSC) – Science
+        </h3>
+        <p class="text-gray-300 mt-2">
+          <span class="font-medium">School:</span>
+        Nripendra Narayan Govt. High School 
+        </p>
+        <p class="text-gray-400 mt-1">
+          <span class="font-medium">GPA:</span> 4.56 out of 5.00
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ================= CONTACT ================= -->
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-24 bg-[#0B0B0F]">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+    <!-- Left : Contact Info -->
+    <div class="flex flex-col justify-center">
+      <h2 class="text-4xl font-bold text-white mb-4">
+        Let’s Work Together
+      </h2>
+      <p class="text-gray-400 mb-8 max-w-md">
+        Have a project in mind or want to collaborate?  
+        Feel free to reach out — I usually respond within 24 hours.
+      </p>
+
+      <div class="space-y-5 text-sm">
+        <div class="flex items-center gap-4">
+          <i class="fas fa-user text-brand"></i>
+          <span class="text-gray-300">Nazirul Islam Nayeem</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i class="fas fa-envelope text-brand"></i>
+          <span class="text-gray-300">nazirulislamnayeem44@gmail.com</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i class="fas fa-phone text-brand"></i>
+          <span class="text-gray-300">+880 1918 316144</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i class="fas fa-location-dot text-brand"></i>
+          <span class="text-gray-300">Bangladesh</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right : Contact Form -->
+    <div class="bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl p-8">
+      <form id="contact-form" class="space-y-4">
+
+        <input
+          type="text"
+          name="from_name"
+          placeholder="Your Name"
+          required
+          class="w-full p-4 rounded-xl bg-black/30 text-white placeholder-gray-400 border border-white/10 focus:ring-2 focus:ring-brand outline-none"
+        />
+
+        <input
+          type="email"
+          name="from_email"
+          placeholder="Your Email"
+          required
+          class="w-full p-4 rounded-xl bg-black/30 text-white placeholder-gray-400 border border-white/10 focus:ring-2 focus:ring-brand outline-none"
+        />
+
+        <input
+          type="text"
+          name="subject"
+          placeholder="Subject"
+          class="w-full p-4 rounded-xl bg-black/30 text-white placeholder-gray-400 border border-white/10 focus:ring-2 focus:ring-brand outline-none"
+        />
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Your Message"
+          required
+          class="w-full p-4 rounded-xl bg-black/30 text-white placeholder-gray-400 border border-white/10 focus:ring-2 focus:ring-brand outline-none"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="w-full bg-brand hover:bg-green-500 text-black font-semibold py-3 rounded-xl transition transform hover:scale-[1.02]"
+        >
+          Send Message
+        </button>
+
+        <p id="status" class="text-sm text-center mt-3"></p>
+      </form>
+    </div>
+
+  </div>
+</section>
+<!-- ================= FOOTER ================= -->
+<footer class="relative bg-[#0B0B0F] border-t border-white/10 overflow-hidden">
+
+  <!-- Top Glow Line -->
+  <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand/60 to-transparent animate-pulse"></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-14 relative z-10">
+
+    <!-- Main Grid -->
+    <div class="grid md:grid-cols-3 gap-10 items-center">
+
+      <!-- Brand -->
+      <div class="text-center md:text-left">
+        <h2 class="text-lg font-semibold text-white tracking-wide">
+          Nazirul Islam Nayeem
+        </h2>
+        <p class="text-sm text-gray-400 mt-1">
+          UI/UX Designer · Frontend Developer
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex justify-center gap-6 text-sm text-gray-400">
+        <a href="#home" class="relative group">
+          Home
+          <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-brand transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#about" class="relative group">
+          About
+          <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-brand transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#skills" class="relative group">
+          Skills
+          <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-brand transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#projects" class="relative group">
+          Projects
+          <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-brand transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="relative group">
+          Contact
+          <span class="absolute left-0 -bottom-1 w-0 h-[1px] bg-brand transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <!-- Social Icons -->
+      <div class="flex justify-center md:justify-end gap-6 text-gray-400 text-lg">
+        <a href="https://www.facebook.com/nazirul.islam.nayeem" target="_blank" class="hover:text-white transform hover:-translate-y-1 transition duration-300">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/nazirulislamnayeem/" target="_blank" class="hover:text-white transform hover:-translate-y-1 transition duration-300">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/NINayeem" target="_blank" class="hover:text-white transform hover:-translate-y-1 transition duration-300">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://dribbble.com/nazirul-islam-nayeem"  target="_blank" class="hover:text-white transform hover:-translate-y-1 transition duration-300">
+          <i class="fab fa-dribbble"></i>
+        </a>
+        <a href="https://www.behance.net/ninayeem" target="_blank" class="hover:text-white transform hover:-translate-y-1 transition duration-300">
+          <i class="fab fa-behance"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom -->
+  
+
+  </div>
+</footer>
+
+
+<script src="worl.js"></script>
+</body>
+</html>
