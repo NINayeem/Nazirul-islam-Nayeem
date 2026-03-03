@@ -1,157 +1,182 @@
+// ================= PROJECT FILTER + SEE MORE =================
+
 const filterBtns = document.querySelectorAll(".filter-btn");
 const projects = document.querySelectorAll(".project-card");
 const seeMoreBtn = document.getElementById("seeMoreBtn");
 const seeLessBtn = document.getElementById("seeLessBtn");
-let visibleCount = 11;
 
-// Initial: show first 6
-projects.forEach((card, index) => {
-  if(index < visibleCount) card.style.display = "flex";
-  else card.style.display = "none";
-});
+let visibleCount = 14;
 
-// Filter buttons
+// Show limited projects
+function showLimitedProjects(list, limit) {
+  list.forEach((card, index) => {
+    card.style.display = index < limit ? "flex" : "none";
+  });
+}
+
+// Initial Load
+showLimitedProjects(projects, visibleCount);
+
+// Filter
 filterBtns.forEach(btn => {
   btn.addEventListener("click", () => {
+
     filterBtns.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+
     const filter = btn.dataset.filter;
 
-    projects.forEach((card, index) => {
-      if(filter === "all") {
-        if(index < visibleCount) card.style.display = "flex";
-        else card.style.display = "none";
-      } else {
-        if(card.classList.contains(filter)) card.style.display = "flex";
-        else card.style.display = "none";
-      }
-    });
+    const filtered = filter === "all"
+      ? [...projects]
+      : [...projects].filter(card => card.classList.contains(filter));
 
-    // See More / See Less button visibility
-    if(filter === "all") {
-      seeMoreBtn.style.display = "inline-block";
-      seeLessBtn.style.display = "none";
-    } else {
-      seeMoreBtn.style.display = "none";
+    projects.forEach(card => card.style.display = "none");
+    showLimitedProjects(filtered, visibleCount);
+
+    if (seeMoreBtn && seeLessBtn) {
+      seeMoreBtn.style.display =
+        filtered.length > visibleCount ? "inline-block" : "none";
       seeLessBtn.style.display = "none";
     }
   });
 });
 
 // See More
-seeMoreBtn.addEventListener("click", () => {
-  projects.forEach(card => card.style.display = "flex");
-  seeMoreBtn.style.display = "none";
-  seeLessBtn.style.display = "inline-block";
-});
+if (seeMoreBtn) {
+  seeMoreBtn.addEventListener("click", () => {
+    projects.forEach(card => card.style.display = "flex");
+    seeMoreBtn.style.display = "none";
+    if (seeLessBtn) seeLessBtn.style.display = "inline-block";
+  });
+}
 
 // See Less
-seeLessBtn.addEventListener("click", () => {
-  projects.forEach((card, index) => {
-    if(index < visibleCount) card.style.display = "flex";
-    else card.style.display = "none";
+if (seeLessBtn) {
+  seeLessBtn.addEventListener("click", () => {
+    showLimitedProjects(projects, visibleCount);
+    seeMoreBtn.style.display = "inline-block";
+    seeLessBtn.style.display = "none";
   });
-  seeMoreBtn.style.display = "inline-block";
-  seeLessBtn.style.display = "none";
-});
+}
 
 
+// ================= MOBILE MENU =================
 
-// Mobile toggle
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+}
 
-// Active link on scroll
+
+// ================= ACTIVE LINK ON SCROLL =================
+
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('#nav-links a');
 
 window.addEventListener('scroll', () => {
+
   let current = '';
+
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if(scrollY >= sectionTop){
-      current = section.getAttribute('id');
+    const sectionTop = section.offsetTop - 150;
+    const sectionHeight = section.offsetHeight;
+
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.id;
     }
   });
 
   navLinks.forEach(link => {
     link.classList.remove('text-brand', 'font-bold');
-    if(link.getAttribute('href') === '#' + current){
+    if (link.getAttribute('href') === '#' + current) {
       link.classList.add('text-brand', 'font-bold');
     }
   });
+
 });
 
 
+// ================= MODAL SYSTEM =================
 
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
 
+function openModal(src) {
+  if (!modal) return;
 
+  modalImg.src = src;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = "hidden";
+}
 
+function closeModal() {
+  if (!modal) return;
 
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+  document.body.style.overflow = "auto";
+}
 
-
-
-
-// Additional IGNORE edits in index.html
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
-
-  function openModal(src){
-    modalImg.src = src;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  }
-
-  function closeModal(){
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
-  }
-
-  // Example: add onclick to your button
-  document.querySelectorAll('.project-card button').forEach(btn => {
-    btn.addEventListener('click', function(){
-      const imgSrc = this.closest('.project-card').querySelector('img').src;
-      openModal(imgSrc);
-    });
+// Button click
+document.querySelectorAll('.project-card button').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const img = this.closest('.project-card').querySelector('img');
+    openModal(img.src);
   });
+});
+
+// Click outside close
+if (modal) {
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+}
+
+// ESC close
+window.addEventListener('keydown', function (e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
+});
 
 
+// ================= TYPING EFFECT =================
 
+const texts = [
+  "I am a UI/UX Designer & Frontend Developer",
+  "and a Graphic Designer"
+];
 
+const typing = document.getElementById("typing");
 
+if (typing) {
 
-
-// Typing effect
-     const texts = [
-    " I am a UI/UX Designer & Frontend Developer",
-    "and a Graphic Designer"
-  ];
-
-  const typing = document.getElementById("typing");
   let textIndex = 0;
   let charIndex = 0;
 
   function typeEffect() {
-    typing.textContent = texts[textIndex].substring(0, charIndex);
-    charIndex++;
 
-    if (charIndex > texts[textIndex].length) {
+    if (charIndex < texts[textIndex].length) {
+      typing.textContent += texts[textIndex][charIndex];
+      charIndex++;
+      setTimeout(typeEffect, 80);
+    } else {
       setTimeout(() => {
+        typing.textContent = "";
         charIndex = 0;
         textIndex = (textIndex + 1) % texts.length;
-        typing.textContent = "";
-        typeEffect(); // start next text immediately
-      }, 1000); // wait before next text
-    } else {
-      setTimeout(typeEffect, 120);
+        typeEffect();
+      }, 1500);
     }
   }
 
   typeEffect();
-
-
-  
+}
