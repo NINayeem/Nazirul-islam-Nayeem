@@ -151,8 +151,8 @@ window.addEventListener('keydown', function (e) {
 // ================= TYPING EFFECT =================
 
 const texts = [
-  "I am a UI/UX Designer & Frontend Developer",
-  "and a Graphic Designer"
+  "I am a  Graphic Designer",
+  " "
 ];
 
 const typing = document.getElementById("typing");
