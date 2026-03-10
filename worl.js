@@ -5,7 +5,7 @@ const projects = document.querySelectorAll(".project-card");
 const seeMoreBtn = document.getElementById("seeMoreBtn");
 const seeLessBtn = document.getElementById("seeLessBtn");
 
-let visibleCount = 14;
+let visibleCount = 19;
 
 // Show limited projects
 function showLimitedProjects(list, limit) {
